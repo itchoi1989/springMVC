@@ -2,6 +2,8 @@
 
 spring의 전체적인 실행 순서
 
+<img width="200%" src="https://user-images.githubusercontent.com/67315764/98838008-02bc1e80-2487-11eb-99b8-bb5906aec9a0.png"></img>
+
 Request -> DispatcherServlet -> HandlerMapping -> (Controller -> Service -> DAO -> DB -> DAO -> Service -> Controller)
 -> DispatcherServlet -> ViewResolver -> View -> DispatcherServlet -> Response
 
