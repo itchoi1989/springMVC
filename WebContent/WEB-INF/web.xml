@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>springmvc03</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- spring MVC Framework 등록
+  → Front Controller 등록
+  → DispatcherServlet 객체 등록 -->
+  
+  <!-- Front-Controller로 지정될 DispatcherServlet 을 등록시킨다. -->
+  
+  <!-- 클라이언트가 Request 요청을 하면 WAS를 통해서 web.xml 을 읽게 되는데 
+  web.xml에서 DispatcherServlet이 먼저 컨트롤하게 지정하게 되면
+  DispatcherServlet 이 web.xml에 있는 요청을 가로챈다.
+  DispatcherServlet이 가로챈 요청을 HandlerMapping 에게 보내
+  해당 요청을 처리할 수 있는 Controller를 찾는다. -->
+  <!-- WAS(Web Application Server) : jsp를 jsp, java로 만듦) -->
+  
+  <!-- 서블릿에서 DispatcherServlet을 읽을수 있는 공통 이름을 정한다.
+  서블릿을 처리할 수 있는 서블릿 패키지를 지정한다. -->
+   
+  <servlet>
+  <!-- WEB-INF/dispatcher-servlet.xml 을 설정 파일로 이용해서 스프링 컨테이너를 생성 -->
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <!-- url 패턴(.action)을 읽어들일수 있는 서블릿 매핑을 설정한다. -->
+  <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   <context:component-scan
+      base-package="org.springframework.samples.petclinic.web" />
+    
+   <!-- 로컬(즉, 본인의 컴퓨터에서 데이터를 가져오는 로직) -->
+   <bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+      <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+      <property name="username" value="scott"></property>
+      <property name="password" value="tiger"></property>
+   </bean>
+   
+   <!-- 리모트(즉, 원격의 컴퓨터에서 데이터를 가져오는 로직) -->
+   <bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+      <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+      <property name="url" value="jdbc:oracle:thin:@119.196.39.4:1521:xe"></property>
+      <property name="username" value="scott"></property>
+      <property name="password" value="tiger"></property>
+   </bean>
+   
+   <bean id="humanDAO" class="com.spring.mvc.HumanDAO">
+     <property name="dataSource">
+     	<ref bean="localDataSource"/>
+     </property>
+   </bean>
+   
+   <bean name="/humanlist.action" class="com.spring.mvc.HumanListController">
+   	  <property name="dao" >
+   	  	<ref bean="humanDAO"/>
+   	  </property>
+   </bean>
+   
+   <bean name="/humaninsert.action" class="com.spring.mvc.HumanInsertController">
+   	  <property name="dao">
+   	  	<ref bean="humanDAO"/>
+   	  </property>
+   </bean>
+      
+</beans>
