@@ -47,7 +47,7 @@
 	#err
    {
       display: none;
-      color; red;
+      color: red;
       font-size: small;
    }
 </style>
